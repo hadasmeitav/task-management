@@ -28,14 +28,14 @@ This is a simple task management application that allows users to register, logi
 
 ## API Endpoints
 1. <b>User Authentication</b>
-   - POST /register: Registers a new user.
-   - POST /login: Authenticates the user and returns an access token.
-   - POST /token: Refreshes the access token using the refresh token.
+   - `POST` /register: Registers a new user.
+   - `POST` /login: Authenticates the user and returns an access token.
+   - `POST` /token: Refreshes the access token using the refresh token.
 2. <b>Task Management</b>
-   - GET /tasks: Fetches the list of tasks.
-   - PUT /task: Update a task
-   - POST /tasks: Creates a new task (requires title and description).
-   - DELETE /tasks/ : Deletes a task by ID.
+   - `GET` /tasks: Fetches the list of tasks.
+   - `PUT` /tasks/id: Update a task
+   - `POST` /tasks: Creates a new task (requires title and description).
+   - `DELETE` /tasks/id : Deletes a task by ID.
 
 ## Security Measures
 1. JWT Authentication: Used to secure API requests.
@@ -47,10 +47,11 @@ This is a simple task management application that allows users to register, logi
 1. I usually write in typescript, using nestJs. I have been working with express in the past, but it was 4 years ago, so the js code is not perfect
 2. <b>SSL</b>: If you encounter SSL issues, you may need to accept the security certificate on https://localhost:3000 
         or adjust the request to handle self-signed certificates.
-3. UI is very basic - I'm not a fe developer, and this is the minimal I could do to make it work
+3. As a general rule, I would not save any secure content on the github project, this is just for the purposes of the assignment (for example - `server.cert`,`server.key`,`JWT_SECRET`,`JWT_REFRESH_SECRET`,...).
+4. UI is very basic - I'm not a fe developer, and this is the minimal I could do to make it work
    - No refresh token implementation - the server implemented this, but the client does not use it.
    - calling PUT api for task is implemented in the server, but not in use in the client
-4. plan for future testings:
+5. plan for future testings:
    <br/>In general, what I would do for this is: 
    - a unit test for each route
    - check all errors thrown (`Messages`)
@@ -68,5 +69,3 @@ This is a simple task management application that allows users to register, logi
        - fetching existing tasks 
        - user add tasks
        - user delete tasks
-
-
