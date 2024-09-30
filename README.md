@@ -14,6 +14,8 @@ This is a simple task management application that allows users to register, logi
 ### Backend Setup + run (project - server)
 1. run `npm install`
 2. run `npm start`
+3. since the requirement is running on https locally, in order to make the frontend work, we'll need to accept the security certificate on https://localhost:3000. 
+   <br/>go to https://localhost:3000 and accept and proceed even if it is not secure (otherwise the client will not work) 
 
 ### Frontend run
 1. go to `client/index.html`
@@ -48,17 +50,22 @@ This is a simple task management application that allows users to register, logi
 2. <b>SSL</b>: If you encounter SSL issues, you may need to accept the security certificate on https://localhost:3000 
         or adjust the request to handle self-signed certificates.
 3. As a general rule, I would not save any secure content on the github project, this is just for the purposes of the assignment (for example - `server.cert`,`server.key`,`JWT_SECRET`,`JWT_REFRESH_SECRET`,...).
-4. UI is very basic - I'm not a fe developer, and this is the minimal I could do to make it work
+4. UI is very basic - I'm not a frontend developer, and this is the minimal I could do to make it work
    - No refresh token implementation - the server implemented this, but the client does not use it.
    - calling PUT api for task is implemented in the server, but not in use in the client
-5. plan for future testings:
-   <br/>In general, what I would do for this is: 
-   - a unit test for each route
-   - check all errors thrown (`Messages`)
-   - check authentication 
-   - check that `user A` is not allowed to access the tasks of `user B`
-   - check encrypt/decrypt
-   - integration tests for the full flow : 
+5. used libraries has some deprecations - i'm ignoring it for the purposes of the assignment. 
+6. plan for future server testings:
+   <br/>In general, what I would do for this is:
+   - server unit tests:
+     - each route
+     - check all errors thrown (`Messages`)
+     - check authentication 
+       - login with a non-registered user
+       - login with a non-valid password
+       - register with a username which already exists
+     - check that `user A` is not allowed to access the tasks of `user B`
+     - check encrypt/decrypt methods
+   - server integration tests for the full flow (happy flow)
      - Test1: (new user - register is required)
        - user registers
        - user logs in
